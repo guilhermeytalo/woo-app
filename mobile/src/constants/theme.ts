@@ -61,5 +61,16 @@ export const Spacing = {
   six: 64,
 } as const;
 
+export const WooColors = {
+  cream: '#F5EFE0',
+  darkBg: '#1C1B2E',
+  card: '#2A2940',
+  yellow: '#E8C84A',
+  rose: '#D4606A',
+  orange: '#E07B45',
+  burgundy: '#7B2D3A',
+  coral: '#E8735A',
+} as const;
+
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
