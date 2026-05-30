@@ -149,10 +149,9 @@ AwesomeProject
 
 | Token | Hex | Usage |
 |---|---|---|
-| `woo-cream` | `#F5EFE0` | ModeSelection background |
-| `woo-dark-bg` | `#1C1B2E` | MicroAdventure background |
-| `woo-yellow` | `#E8C84A` | Individual mode button |
-| `woo-rose` | `#D4606A` | Casal mode button |
-| `woo-orange` | `#E07B45` | Família mode button |
-| `woo-burgundy` | `#7B2D3A` | Amigos mode button |
-| `woo-coral` | `#E8735A` | Logo / primary accent |
+| `woo-principal` | `#FAF7F5` | All screen backgrounds |
+| `woo-red` | `#792C2D` | Primary accent, buttons, titles |
+| `woo-yellow` | `#F4B740` | Secondary accent |
+| `woo-dark-text` | `#2E2E2E` | Primary text |
+| `woo-light-gray` | `#6B6B6B` | Secondary / label text |
+| `woo-white-cards` | `#FFFFFF` | Card backgrounds |

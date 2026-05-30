@@ -62,14 +62,13 @@ export const Spacing = {
 } as const;
 
 export const WooColors = {
-  cream: '#F5EFE0',
-  darkBg: '#1C1B2E',
-  card: '#2A2940',
-  yellow: '#E8C84A',
-  rose: '#D4606A',
-  orange: '#E07B45',
-  burgundy: '#7B2D3A',
-  coral: '#E8735A',
+  principal: '#FAF7F5',
+  red: '#792C2D',
+  yellow: '#F4B740',
+  darkText: '#2E2E2E',
+  lightGray: '#6B6B6B',
+  whiteCards: '#FFFFFF',
+  black: '#000'
 } as const;
 
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;

@@ -2,6 +2,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
+import { WooColors } from '@/constants/theme';
+
 const DRAWER_WIDTH = 260;
 const DURATION = 250;
 
@@ -67,7 +69,7 @@ export function Drawer({ isOpen, onClose }: DrawerProps) {
 
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.2)',
     zIndex: 10,
   },
   drawer: {
@@ -76,11 +78,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     width: DRAWER_WIDTH,
-    backgroundColor: '#1C1B2E',
+    backgroundColor: WooColors.principal,
     zIndex: 11,
-    shadowColor: '#000',
+    shadowColor: WooColors.black,
     shadowOffset: { width: 4, height: 0 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 16,
   },
@@ -89,10 +91,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 24,
     borderBottomWidth: 1,
-    borderBottomColor: '#2A2940',
+    borderBottomColor: '#E8E0DC',
   },
   brand: {
-    color: '#E8735A',
+    color: WooColors.red,
     fontSize: 28,
     fontWeight: '700',
   },
@@ -104,10 +106,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   menuItemPressed: {
-    backgroundColor: '#2A2940',
+    backgroundColor: '#F0EBE8',
   },
   menuLabel: {
-    color: '#FFFFFF',
+    color: WooColors.darkText,
     fontSize: 16,
     fontWeight: '500',
   },

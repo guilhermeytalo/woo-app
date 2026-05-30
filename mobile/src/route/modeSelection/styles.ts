@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { Fonts } from '@/constants/theme';
+import { Fonts, WooColors } from '@/constants/theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5EFE0',
+    backgroundColor: WooColors.principal,
   },
   slide: {
     alignItems: 'center',
@@ -17,13 +17,13 @@ export const styles = StyleSheet.create({
   },
   modoLabel: {
     fontSize: 16,
-    color: '#A0896A',
+    color: WooColors.lightGray,
     fontWeight: '500',
   },
   modeName: {
     fontSize: 38,
     fontWeight: '700',
-    color: '#4A3728',
+    color: WooColors.darkText,
     fontFamily: Fonts?.rounded ?? undefined,
   },
   imageWrapper: {
@@ -57,12 +57,12 @@ export const styles = StyleSheet.create({
     width: 16,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#4A3728',
+    backgroundColor: WooColors.darkText,
   },
   dotInactive: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#C8B89A',
+    backgroundColor: WooColors.lightGray,
   },
 });
