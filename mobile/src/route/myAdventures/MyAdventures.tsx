@@ -5,9 +5,19 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Drawer } from '@/components/Drawer';
 import { useAdventureLogStore } from '@/redux/slices/AdventureLogSlice';
+import { type QuestCategory } from '@/utils/quests';
 
 import { formatCardDate, isEmpty, truncate } from './helper';
-import { styles } from './styles';
+import { chipLabel, chipStyle, styles } from './styles';
+
+function CategoryChip({ category }: { category: QuestCategory }) {
+  const { bg, text } = chipStyle(category);
+  return (
+    <View style={[styles.chip, { backgroundColor: bg }]}>
+      <Text style={[styles.chipText, { color: text }]}>{chipLabel(category)}</Text>
+    </View>
+  );
+}
 
 export default function MyAdventures() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -42,17 +52,22 @@ export default function MyAdventures() {
             <Pressable
               style={styles.card}
               onPress={() => router.push({ pathname: '/adventure-detail' as '/', params: { id: item.id } })}>
-              <View className="flex-row justify-between items-start mb-2">
-                <Text className="text-woo-light-gray text-xs flex-1">{formatCardDate(item.date)}</Text>
-                {item.rating > 0 && (
-                  <Text className="text-xs ml-1">{'⭐'.repeat(item.rating)}</Text>
-                )}
+              {/* Top row: stars left + chip right */}
+              <View style={styles.cardTop}>
+                <View>
+                  <Text style={styles.stars}>
+                    {item.rating > 0 ? '⭐'.repeat(item.rating) : '—'}
+                  </Text>
+                  <Text style={styles.date}>{formatCardDate(item.date)}</Text>
+                </View>
+                {item.category && <CategoryChip category={item.category} />}
               </View>
-              <Text className="text-woo-dark-text text-sm font-semibold mb-1" numberOfLines={2}>
+
+              <Text style={styles.challengeText} numberOfLines={2}>
                 {truncate(item.challengeText, 60)}
               </Text>
               {item.notes ? (
-                <Text className="text-woo-light-gray text-xs" numberOfLines={3}>
+                <Text style={styles.notesText} numberOfLines={3}>
                   {truncate(item.notes, 80)}
                 </Text>
               ) : null}

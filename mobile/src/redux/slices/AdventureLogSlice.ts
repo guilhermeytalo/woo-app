@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { type QuestCategory } from '@/utils/quests';
+
 export interface AdventureLog {
   id: string;
   challengeId: string;
@@ -9,6 +11,7 @@ export interface AdventureLog {
   notes: string;
   rating: number;
   date: string;
+  category: QuestCategory;
 }
 
 interface AdventureLogState {

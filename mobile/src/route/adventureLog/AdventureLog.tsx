@@ -7,7 +7,7 @@ import { ScreenHeader } from '@/components/ScreenHeader';
 import { logError } from '@/logs/ErrorLogger';
 import { useAdventureLogStore } from '@/redux/slices/AdventureLogSlice';
 import { useToastStore } from '@/redux/slices/ToastSlice';
-import { CHALLENGES } from '@/route/microAdventure/helper';
+import { type QuestCategory } from '@/utils/quests';
 
 import { capitalize, formatDate } from './helper';
 import { styles } from './styles';
@@ -27,14 +27,14 @@ function StarRating({ value, onChange }: { value: number; onChange: (n: number) 
 function RequiredLabel({ text }: { text: string }) {
   return (
     <View className="flex-row items-center mb-3">
-      <Text className="text-woo-light-gray text-sm font-medium uppercase tracking-widest">{text}</Text>
-      <Text className="text-woo-red text-sm font-bold ml-1">*</Text>
+      <Text className="text-woo-light-gray text-sm font-medium uppercase flex-1">{text}<Text className="text-woo-red text-sm font-bold ml-1">*</Text></Text>
+
     </View>
   );
 }
 
 export default function AdventureLog() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, text, category } = useLocalSearchParams<{ id: string; text: string; category: QuestCategory }>();
   const [notes, setNotes] = useState('');
   const [rating, setRating] = useState(0);
   const { top, bottom } = useSafeAreaInsets();
@@ -42,7 +42,6 @@ export default function AdventureLog() {
   const addLog = useAdventureLogStore((s) => s.addLog);
   const showToast = useToastStore((s) => s.show);
 
-  const challenge = CHALLENGES.find((c) => c.id === id) ?? CHALLENGES[0];
   const today = capitalize(formatDate(new Date()));
   const isValid = notes.trim().length > 0 && rating > 0;
 
@@ -50,17 +49,18 @@ export default function AdventureLog() {
     if (!isValid) return;
     try {
       addLog({
-        challengeId: challenge.id,
-        challengeText: challenge.text,
+        challengeId: id ?? '',
+        challengeText: text ?? '',
         notes,
         rating,
         date: new Date().toISOString(),
+        category: category ?? 'individual',
       });
       showToast('Aventura Salva com Sucesso');
       router.navigate('/my-adventures' as '/');
     } catch (error) {
       logError('AdventureLog', 'handleSave', error, {
-        challengeId: challenge.id,
+        challengeId: id,
         notesLength: notes.length,
         rating,
       });
@@ -85,7 +85,7 @@ export default function AdventureLog() {
 
         <View className="bg-woo-white-cards rounded-2xl px-4 py-4 mb-8">
           <Text className="text-woo-dark-text text-base font-medium leading-6">
-            {challenge.text}
+            {text}
           </Text>
         </View>
 
@@ -112,7 +112,6 @@ export default function AdventureLog() {
           <Text className="text-white text-base font-semibold">Concluir Aventura</Text>
         </Pressable>
       </ScrollView>
-
     </View>
   );
 }

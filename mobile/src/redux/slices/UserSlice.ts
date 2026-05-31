@@ -6,6 +6,8 @@ interface UserState {
   name: string;
   avatarSeed: string;
   level: number;
+  setName: (name: string) => void;
+  setAvatarSeed: (seed: string) => void;
 }
 
 function randomSeed() {
@@ -14,10 +16,12 @@ function randomSeed() {
 
 export const useUserStore = create<UserState>()(
   persist(
-    () => ({
+    (set) => ({
       name: 'Explorador',
       avatarSeed: randomSeed(),
       level: 1,
+      setName: (name) => set({ name }),
+      setAvatarSeed: (avatarSeed) => set({ avatarSeed }),
     }),
     {
       name: 'woo-user',
