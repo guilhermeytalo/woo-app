@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
@@ -20,6 +21,7 @@ interface MenuItem {
 const MENU_ITEMS: MenuItem[] = [
   { label: 'Início', route: '/' },
   { label: 'Micro Aventura', route: '/adventure' },
+  { label: 'Minhas Aventuras', route: '/my-adventures' },
 ];
 
 export function Drawer({ isOpen, onClose }: DrawerProps) {
@@ -49,7 +51,11 @@ export function Drawer({ isOpen, onClose }: DrawerProps) {
 
       <Animated.View style={[styles.drawer, drawerStyle]}>
         <View style={styles.header}>
-          <Text style={styles.brand}>Wöo</Text>
+          <Image
+            source={require('@/assets/logo.png')}
+            style={styles.logo}
+            contentFit="contain"
+          />
         </View>
 
         <View style={styles.menu}>
@@ -93,10 +99,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#E8E0DC',
   },
-  brand: {
-    color: WooColors.red,
-    fontSize: 28,
-    fontWeight: '700',
+  logo: {
+    width: 120,
+    height: 70,
   },
   menu: {
     paddingTop: 16,
