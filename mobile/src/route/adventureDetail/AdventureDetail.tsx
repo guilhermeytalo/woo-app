@@ -1,9 +1,11 @@
 import { useLocalSearchParams } from 'expo-router';
+import { useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { useAdventureLogStore } from '@/store/slices/AdventureLogSlice';
+import { debugAsRecipe } from '@/utils/RecipeDebugger';
 import { type QuestCategory } from '@/utils/quests';
 
 import { formatFullDate } from './helper';
@@ -22,6 +24,10 @@ export default function AdventureDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { top, bottom } = useSafeAreaInsets();
   const log = useAdventureLogStore((s) => s.logs.find((l) => l.id === id));
+
+  useEffect(() => {
+    if (log) debugAsRecipe(log);
+  }, [log]);
 
   if (!log) return null;
 

@@ -1,10 +1,11 @@
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Drawer } from '@/components/Drawer';
 import { useAdventureLogStore } from '@/store/slices/AdventureLogSlice';
+import { debugAllAsMenu } from '@/utils/RecipeDebugger';
 import { type QuestCategory } from '@/utils/quests';
 
 import { formatCardDate, isEmpty, truncate } from './helper';
@@ -24,6 +25,10 @@ export default function MyAdventures() {
   const { top, bottom } = useSafeAreaInsets();
   const logs = useAdventureLogStore((s) => s.logs);
   const router = useRouter();
+
+  useEffect(() => {
+    debugAllAsMenu(logs);
+  }, [logs]);
 
   return (
     <View className="flex-1 bg-woo-principal">
