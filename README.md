@@ -31,6 +31,18 @@ Woo gera microaventuras personalizadas capazes de introduzir pequenas quantidade
 Em poucos segundos, o aplicativo sugere experiências rápidas, acessíveis e divertidas que podem ser realizadas sozinho, com amigos, em casal ou em família.
 
 
+## ⚡ Primeiros Passos
+
+> Guia completo em [SETUP.md](./SETUP.md).
+
+1. **Pré-requisitos** — Node.js ≥ 18, npm ≥ 9, Xcode (iOS) ou Android Studio (Android)
+2. **Instalar dependências** — `npm install`
+3. **Iniciar o servidor** — `npm start`
+4. **Escolher a plataforma** — `npm run ios`, `npm run android` ou `npm run web`
+5. **Dispositivo físico** — escaneie o QR code no terminal com o app **Expo Go**
+
+---
+
 ## 🛠 Funcionalidades Atuais
 
 ### 👤 Escolha seu modo de aventura
