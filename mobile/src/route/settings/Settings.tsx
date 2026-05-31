@@ -5,8 +5,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { DiceBearAvatar } from '@/components/DiceBearAvatar';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { useToastStore } from '@/redux/slices/ToastSlice';
-import { useUserStore } from '@/redux/slices/UserSlice';
+import { useToastStore } from '@/store/slices/ToastSlice';
+import { useUserStore } from '@/store/slices/UserSlice';
 
 import { AVATAR_SEEDS } from './helper';
 import { styles } from './styles';

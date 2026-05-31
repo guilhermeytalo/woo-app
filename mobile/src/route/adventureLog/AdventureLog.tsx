@@ -5,8 +5,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { logError } from '@/logs/ErrorLogger';
-import { useAdventureLogStore } from '@/redux/slices/AdventureLogSlice';
-import { useToastStore } from '@/redux/slices/ToastSlice';
+import { useAdventureLogStore } from '@/store/slices/AdventureLogSlice';
+import { useToastStore } from '@/store/slices/ToastSlice';
 import { type QuestCategory } from '@/utils/quests';
 
 import { capitalize, formatDate } from './helper';

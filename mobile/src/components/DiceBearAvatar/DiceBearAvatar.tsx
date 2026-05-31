@@ -5,6 +5,8 @@ interface DiceBearAvatarProps {
   size: number;
 }
 
+// DiceBear Notionists SVGs use complex clip-paths and filters that react-native-svg
+// cannot render. expo-image fetches once and persists to disk via memory-disk cache.
 export function DiceBearAvatar({ seed, size }: DiceBearAvatarProps) {
   const uri = `https://api.dicebear.com/9.x/notionists/png?seed=${encodeURIComponent(seed)}&size=${size * 2}`;
 
@@ -13,6 +15,7 @@ export function DiceBearAvatar({ seed, size }: DiceBearAvatarProps) {
       source={{ uri }}
       style={{ width: size, height: size, borderRadius: size / 2 }}
       contentFit="cover"
+      cachePolicy="memory-disk"
     />
   );
 }

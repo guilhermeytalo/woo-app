@@ -5,7 +5,6 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 interface UserState {
   name: string;
   avatarSeed: string;
-  level: number;
   setName: (name: string) => void;
   setAvatarSeed: (seed: string) => void;
 }
@@ -19,7 +18,6 @@ export const useUserStore = create<UserState>()(
     (set) => ({
       name: 'Explorador',
       avatarSeed: randomSeed(),
-      level: 1,
       setName: (name) => set({ name }),
       setAvatarSeed: (avatarSeed) => set({ avatarSeed }),
     }),

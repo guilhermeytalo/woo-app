@@ -4,7 +4,7 @@ import { FlatList, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Drawer } from '@/components/Drawer';
-import { useAdventureLogStore } from '@/redux/slices/AdventureLogSlice';
+import { useAdventureLogStore } from '@/store/slices/AdventureLogSlice';
 import { type QuestCategory } from '@/utils/quests';
 
 import { formatCardDate, isEmpty, truncate } from './helper';

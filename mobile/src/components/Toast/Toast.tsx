@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useToastStore } from '@/redux/slices/ToastSlice';
+import { useToastStore } from '@/store/slices/ToastSlice';
 
 import { styles } from './styles';
 

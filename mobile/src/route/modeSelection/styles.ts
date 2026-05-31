@@ -30,6 +30,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
+  },
+  skeleton: {
+    backgroundColor: '#E0D8D2',
+    borderRadius: 24,
   },
   modeImage: {
     width: 640,

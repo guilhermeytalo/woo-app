@@ -1,13 +1,26 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useRef, useState } from 'react';
-import { FlatList, Pressable, Text, View, ViewToken, useWindowDimensions } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { FlatList, Pressable, StyleSheet, Text, View, ViewToken, useWindowDimensions } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { MODES, type Mode } from './helper';
 import { styles } from './styles';
 
 const DOTS_HEIGHT = 32;
+
+function ImageSkeleton() {
+  const opacity = useSharedValue(0.4);
+
+  useEffect(() => {
+    opacity.value = withRepeat(withTiming(0.8, { duration: 800 }), -1, true);
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({ opacity: opacity.value }));
+
+  return <Animated.View style={[StyleSheet.absoluteFill, styles.skeleton, animatedStyle]} />;
+}
 
 interface ModeSlideProps {
   item: Mode;
@@ -19,6 +32,8 @@ interface ModeSlideProps {
 }
 
 function ModeSlide({ item, slideWidth, slideHeight, paddingTop, paddingBottom, onExplore }: ModeSlideProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <View style={[styles.slide, { width: slideWidth, height: slideHeight, paddingTop, paddingBottom }]}>
       <View style={styles.textSection}>
@@ -27,7 +42,14 @@ function ModeSlide({ item, slideWidth, slideHeight, paddingTop, paddingBottom, o
       </View>
 
       <View style={styles.imageWrapper}>
-        <Image source={item.image} style={styles.modeImage} contentFit="contain" />
+        {!isLoaded && <ImageSkeleton />}
+        <Image
+          source={item.image}
+          style={styles.modeImage}
+          contentFit="contain"
+          transition={300}
+          onLoad={() => setIsLoaded(true)}
+        />
       </View>
 
       <Pressable

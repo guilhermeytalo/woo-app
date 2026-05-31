@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { DiceBearAvatar } from '@/components/DiceBearAvatar';
 import { WooColors } from '@/constants/theme';
-import { useUserStore } from '@/redux/slices/UserSlice';
+import { useUserStore } from '@/store/slices/UserSlice';
 
 import { DRAWER_WIDTH, styles } from './styles';
 
@@ -40,7 +40,7 @@ export function Drawer({ isOpen, onClose }: DrawerProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { top, bottom } = useSafeAreaInsets();
-  const { name, avatarSeed, level } = useUserStore();
+  const { name, avatarSeed } = useUserStore();
 
   const overlayStyle = useAnimatedStyle(() => ({
     opacity: withTiming(isOpen ? 1 : 0, { duration: DURATION }),
@@ -82,7 +82,6 @@ export function Drawer({ isOpen, onClose }: DrawerProps) {
               </View>
               <View style={styles.profileInfo}>
                 <Text style={styles.profileName}>{name}</Text>
-                <Text style={styles.profileLevel}>Explorador Nível {level}</Text>
               </View>
             </View>
           </View>

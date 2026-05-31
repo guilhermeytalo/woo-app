@@ -1,4 +1,4 @@
-import { AdventureLog } from '@/redux/slices/AdventureLogSlice';
+import { AdventureLog } from '@/store/slices/AdventureLogSlice';
 
 export function formatCardDate(iso: string): string {
   const date = new Date(iso);
