@@ -11,18 +11,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 40,
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 160,
-    height: 100,
-    alignSelf: 'center',
-    marginBottom: 16,
-  },
   title: {
     fontSize: 22,
     fontWeight: '700',
