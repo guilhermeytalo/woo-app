@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { DiceBearAvatar } from '@/components/DiceBearAvatar';
 import { ScreenHeader } from '@/components/ScreenHeader';
+import { useToastStore } from '@/redux/slices/ToastSlice';
 import { useUserStore } from '@/redux/slices/UserSlice';
 
 import { AVATAR_SEEDS } from './helper';
@@ -16,14 +17,20 @@ export default function Settings() {
   const { top, bottom } = useSafeAreaInsets();
   const router = useRouter();
   const { name, avatarSeed, setName, setAvatarSeed } = useUserStore();
+  const showToast = useToastStore((s) => s.show);
 
   const [localName, setLocalName] = useState(name);
   const [selectedSeed, setSelectedSeed] = useState(avatarSeed);
 
   function handleSave() {
-    setName(localName.trim() || 'Explorador');
-    setAvatarSeed(selectedSeed);
-    router.back();
+    try {
+      setName(localName.trim() || 'Explorador');
+      setAvatarSeed(selectedSeed);
+      showToast('Configurações salvas com sucesso');
+      router.back();
+    } catch {
+      showToast('Erro ao salvar configurações, tente novamente', 'error');
+    }
   }
 
   return (
